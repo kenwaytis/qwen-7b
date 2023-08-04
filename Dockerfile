@@ -1,12 +1,4 @@
-FROM paidax/dev-containers:modelscope-v0.8
-
-ARG DEBIAN_FRONTEND=noninteractive
-
-RUN git clone -b v1.0.8 https://github.com/Dao-AILab/flash-attention && \
-    cd flash-attention && pip install . && \
-    pip install csrc/layer_norm && \
-    pip install csrc/rotary && \
-    cd /home && \
-    mkdir qwen-7b
-
+FROM paidax/dev-containers:modelscope-cuda11.7-py3.11-v0.2
 WORKDIR /home/qwen-7b
+COPY download_model.py ./download_model.py
+RUN python download_model.py

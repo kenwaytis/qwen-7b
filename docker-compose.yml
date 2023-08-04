@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  qwen-7b:
+    image: paidax/qwen-7b:0.1.0
+    container_name: qwen-7b
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    ports:
+      - 10001:10001
+    command: tail -f /dev/null

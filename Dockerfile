@@ -8,20 +8,19 @@ RUN apt update && \
     libsndfile1 && \
     apt clean && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install --no-cache-dir \
-        torch \
-        torchvision \
-        torchaudio \
-        transformers \
-        accelerate \
-        tiktoken \
-        einops
-RUN pip install --no-cache-dir ninja && \
-    git clone -b v1.0.8 https://github.com/Dao-AILab/flash-attention && \
-    cd flash-attention && pip install . && \
-    pip install --no-cache-dir csrc/layer_norm && \
-    pip install --no-cache-dir csrc/rotary && \
-    cd .. && \
-    rm -rf flash-attention
+RUN git clone https://github.com/QwenLM/Qwen-7B.git && \
+    cd Qwen-7B && \
+    pip install -r --no-cache-dir requirements.txt
+RUN cd /home && \
+    wget https://github.com/git-lfs/git-lfs/releases/download/v3.4.0/git-lfs-linux-amd64-v3.4.0.tar.gz && \
+    tar -xvf git-lfs-linux-amd64-v3.4.0.tar.gz && \
+    rm -rf git-lfs-linux-amd64-v3.4.0.tar.gz && \
+    cd git-lfs-3.4.0 && \
+    bash install.sh
+RUN cd /home && \
+    git lfs install && \
+    git clone https://huggingface.co/Qwen/Qwen-7B-Chat
 
-WORKDIR /home/qwen-7b
+WORKDIR /home/qwen-7b-api
+
+COPY . .

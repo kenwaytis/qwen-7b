@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   qwen-7b:
-    image: paidax/qwen-7b:0.2.0
+    image: paidax/qwen-7b:0.3.0
     container_name: qwen-7b
     deploy:
       resources:

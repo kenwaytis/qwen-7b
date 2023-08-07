@@ -10,7 +10,7 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 RUN git clone https://github.com/QwenLM/Qwen-7B.git && \
     cd Qwen-7B && \
-    pip install -r --no-cache-dir requirements.txt
+    pip install --no-cache-dir -r requirements.txt
 RUN cd /home && \
     wget https://github.com/git-lfs/git-lfs/releases/download/v3.4.0/git-lfs-linux-amd64-v3.4.0.tar.gz && \
     tar -xvf git-lfs-linux-amd64-v3.4.0.tar.gz && \
